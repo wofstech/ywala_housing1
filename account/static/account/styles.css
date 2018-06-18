@@ -1,0 +1,418 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    
+   
+  }
+
+.navbar{
+    margin-bottom: 0px;
+    border-radius: 0;
+    background-color: #ffffff;
+    color:#286DA8;
+    padding: 1% 0;
+    font-size: 1.2em;
+    border:0;
+}
+
+.field{
+    font-size: 15px;
+}
+.navbar-brand{
+    float: left;
+    min-height: 55px;
+}
+
+.navbar-inverse .navbar-nav .active a, .navbar-inverse .navbar-nav .active a:focus, .navbar-inverse .navbar-nav .active a:hover{
+    color: #000000;
+    background-color: #5E4485;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+    color: #FFC0CB;
+}
+
+.navbar-inverse .navbar-nav li a{
+    color: #328cc1;
+}
+
+.myforms1{
+    width: 40%;
+    margin: auto;
+}
+
+#showcase{
+    background: 
+      /* top, transparent red */
+      linear-gradient(
+        rgba(73,78,104, 0.40),
+        rgba(73,78,104, 0.40)
+      ),
+      url("/static/account/city.jpg");
+      color: #ffffff;
+    min-height: 600px;
+    text-align: center;
+}
+
+.sr1{
+    width: 90%;
+    margin:auto;
+    
+}
+
+#srs{
+    background: #d3d3d3;
+}
+
+#showcase h2{
+    margin-top: 200px;
+    font-size: 55px;
+    margin-bottom: 10px;
+}
+
+#intry{
+    padding: 10px;
+    border:none;
+    margin-left: 0;
+    font-size: 20px;
+
+}
+
+#sub1{
+    background: #286DA8;
+    border:none;
+    margin-right: 0;
+    padding:10px 30px 10px 30px;
+    color:#ffffff;
+    font-size: 20px;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input{
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.button_2{
+    background: #286DA8;
+    border:none;
+    margin-right: 0;
+    padding:10px 10px 10px 10px;
+    color:#ffffff;
+    font-size: 15px; 
+}
+
+.button_4{
+    background: #286DA8;
+    border:none;
+    margin-right: 0;
+    margin-top: 10px;
+    padding:5px 5px 5px 5px;
+    color:#ffffff;
+    font-size: 15px; 
+}
+
+.error{
+    color:#000000;
+}
+
+#learnmore{
+    background: #286DA8;
+    border:none;
+    margin-right: 0;
+    padding:10px 30px 10px 30px;
+    color:#ffffff;
+    font-size: 20px;
+    margin-top: 7px;
+}
+
+.howworks{
+    margin-top: 60px;
+}
+.login-form{
+    width:20%;
+    margin: auto;
+}
+
+.msg-show{
+    background: #008000;
+    color:#fff;
+}
+
+.messages{
+    list-style-type: none;
+}
+
+.carousel-caption{
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+.howworks h2{
+    margin-bottom: 40px;
+}
+
+.whyus1 h2{
+    margin-bottom: 40px;
+}
+
+.fa{
+    padding: 20px;
+    font-size: 30px;
+    color:#fff;
+}
+
+.fa:hover{
+    color: #000000;
+}
+
+#frow{
+    margin-bottom: 20px;
+}
+
+#howworks1{
+    font-size: 18px;
+}
+
+#whyus{
+    font-size: 18px;
+}
+
+#mfoot ul{
+    list-style-type: none;
+}
+
+#mfoot ul li{
+    padding: 7px;
+}
+ul.divider{
+    margin: 0em;
+    padding: 0;
+    list-style-type: none;
+}
+
+ul.myuserdetails{
+    margin: 0em;
+    padding: 0;
+    list-style-type: none;
+    font : 20px;
+}
+
+ul.myuserdetails li{
+    padding-bottom: 10px;
+}
+
+#userpost1{
+    width:60%;
+    
+}
+
+#myinner{
+    padding: 20px;
+    border-style: dotted;
+    border-width: 2px;
+    border-color: #000000;
+    margin-bottom: 15px;
+
+}
+
+#myinner2{
+    padding: 20px;
+    border-style: dotted;
+    border-width: 2px;
+    border-color: #000000;
+    margin-bottom: 15px;
+
+}
+
+.responsive{
+    width:100%;
+    height: 150px;
+}
+
+.userpost{
+    clear: left;
+}
+
+.userpost2{
+    clear: both;
+}
+
+.rightguy{
+    float:left;
+}
+
+.leftguy{
+    float:right;
+}
+
+.centreguy{
+    clear: both;
+}
+
+
+#addhouse{
+    background: #d3d3d3;
+    margin-bottom:0;
+    margin: 0;
+    padding:0;
+}
+
+.addshow{
+    width:75%;
+    margin: auto;
+}
+
+.outeruser{
+    width: 90%;
+    margin: auto;
+}
+
+.glyphicon.glyphicon-search, .glyphicon.glyphicon-cog, .glyphicon.glyphicon-pencil, .glyphicon.glyphicon-inbox, .glyphicon.glyphicon-lock, .glyphicon.glyphicon-usd, .glyphicon.glyphicon-ok, .glyphicon.glyphicon-eye-open, .glyphicon.glyphicon-phone, .glyphicon.glyphicon-flash, .glyphicon.glyphicon-bell, .glyphicon.glyphicon-thumbs-up{
+    font-size: 50px;
+}
+
+#lshowcase{
+    background: 
+      /* top, transparent red */
+      linear-gradient(
+        rgba(73,78,104, 0.60),
+        rgba(73,78,104, 0.60)
+      ),
+      url("/static/account/city.jpg");
+      color: #ffffff;
+    min-height: 600px;
+    text-align: center;
+}
+#sshowcase{
+    background: 
+      /* top, transparent red */
+      linear-gradient(
+        rgba(73,78,104, 0.50),
+        rgba(73,78,104, 0.50)
+      ),
+      url("/static/account/city.jpg");
+      color: #ffffff;
+    min-height: 600px;
+    text-align: center;
+}
+
+.scontainer h1{
+    margin-top: 20px;
+}
+
+.scontainer{
+    width: 30%;
+    margin: auto;
+}
+#lshowcase form{
+    margin-top: 200px;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.dash{
+    margin-top: 10px;
+}
+
+#dashshowcase{
+    background: #d3d3d3;
+   
+}
+
+#userlisting1{
+    background: #d3d3d3;
+}
+
+.userlisting{
+    width:95%;
+    margin: auto;
+}
+
+
+
+
+
+.dcontainer{
+    width: 70%;
+    margin: auto;
+}
+
+.dashcontainer1{
+    padding: 50px;
+}
+
+.help{
+    width:40%;
+    margin:auto;
+    padding: 30px;
+}
+
+
+
+ul.searchlist li{
+    display: inline;
+    padding: 30px;
+}
+
+
+.pic{
+    float:right;
+}
+footer{
+    width: 100%;
+    background-color: #494e6b;
+    padding: 2%;
+    color: #fff; 
+    margin-top: 0; 
+    
+}
+
+
+
+@media (max-width:600px){
+    .login-form{
+        width:80%;
+        margin:auto;
+    }
+
+    .scontainer{
+        width: 80%;
+        margin:auto;
+    }
+
+    #dase{
+        margin-bottom: 0px;
+    }
+
+    .help{
+        width:100%;
+        margin:auto;
+        
+
+    }
+
+    .dashcontainer1{
+       
+        padding: 50px;
+    
+    }
+
+    
+
+    
+}

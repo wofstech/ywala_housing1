@@ -1,0 +1,44 @@
+{% extends "postman/base_folder.html" %}
+{% load i18n %}
+{% block pm_folder_title %}{% trans "Archived Messages" %}{% endblock %}
+{% block pm_archive_button %}{% endblock %}
+{% block pm_undelete_button %}{% endblock %}
+{% block pm_footer_info %}
+<p>{% trans "Messages in this folder will never be removed. You can use this folder for long term storage." %}</p>
+<footer class='container-fluid ' id='mfoot'>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-sm-4'>
+                <ul>
+                    <li>About Ywala.com</li>
+                    <li>Ywala Blog</li>
+                    <li>Terms and Conditions</li>
+                    <li>Privacy Policy</li>
+                </ul>
+            </div>
+
+            <div class='col-sm-4'>
+                <ul>
+                    <li>Finding a room</li>
+                    <li>How it Works</li>
+                    <li>Why use Ywala.com</li>
+                    <li>FAQ</li>
+                    <li>Refund Policy</li>
+                </ul>
+            </div>
+
+            <div class='col-sm-4'>
+                <a href='#' class='fa fa-facebook'></a>
+                <a href='#' class='fa fa-twitter'></a>
+                <a href='#' class='fa fa-google'></a>
+                <a href='#' class='fa fa-youtube'></a>
+            </div>
+
+            
+        </div>
+        
+            <hr style='border-color:#286DA8; border-width: 1px'>
+            <p>Copyright 2018, Ywala.com</p>
+    </div>
+</footer>
+{% endblock %}

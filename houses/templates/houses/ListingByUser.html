@@ -1,0 +1,195 @@
+
+<!DOCTYPE html> 
+<html> 
+    <head>  
+        <title>Ywala Housing</title>  
+        {% load static %}
+        
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:italic">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+        <link rel='stylesheet' href='{% static "account/styles.css" %}'>
+        
+    </head> 
+    <body>  
+
+        <nav class='navbar navbar-inverse' style='padding:0; padding-top:10px;'>
+            <div class='container-fluid'>
+                    <div class='navbar-header'>
+                            <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='#MyNavBar'>
+                                <span class='icon-bar'></span>
+                                <span class='icon-bar'></span>
+                                <span class='icon-bar'></span>
+                            </button>
+                            <a  class='navbar-brand' style="font-family: 'Tangerine', serif; font-size: 48px; color:#000000;">Ywala Housing</a>
+                    </div>
+                    <div 'collapse navbar-collapse'  id='MyNavBar'> 
+                        <ul class='nav navbar-nav navbar-right' style="font-size: 20px;">
+                            <li>
+                                <a href='#'>
+                                    {% if user.profile.image  %} 
+                                    <img src='{{ user.profile.image.url }}'  width='50px' height="50px" style='border-radius:50%'>
+                                    {% else %}
+                                    <img src='{% static "account/avatar2.jpg" %}' width='50px' height="50px" style='border-radius:50%'>
+                                    {% endif %}
+                            </a>
+                            </li>
+                            <li>
+                                <a href='{% url "dashboard" %}' class='dash' style='font-size: 15px'>
+                                        
+                                    {% if request.user.is_authenticated %}      
+                                    Hello {{ request.user.first_name }},
+                                    {% endif %}
+                                </a>
+                            </li>
+                            <li>
+                                <a href='{% url "addlisting" %}' class='dash' style='font-size: 15px'>
+                                    <span class='glyphicon glyphicon-home' aria-hidden="true"></span>
+                                    Make a Listing
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href='#' class='dash' style='font-size: 15px'>
+                                    <span class='glyphicon glyphicon-envelope' aria-hidden="true"></span>
+                                    Inbox
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+    </nav>
+    <section id='userlisting1'>
+        
+        <div class='outeruser'>
+            <div class='userlisting'>
+                <br>
+                    {% if messages %}
+                    <div class="alert alert-success">
+                        <p>    
+                            {% for message in messages %}          
+                                {{ message|safe }}          
+                            {% endfor %}  
+                        </p>
+                    </div>                     
+                {% endif %}
+                <ul class='divider'>
+                    <p style="font-family: 'Tangerine', serif; font-size: 58px; color:#000000; padding-top: 24px;">My Listings</p>
+                    {% if myhouses_list %}
+                    <div class='row'>
+                    {% for house in myhouses_list  %}
+                    <div class='col-sm-4' >
+                        <div id='myinner'>
+                            
+                            <li><img src='{{house.house_image2.url}}'   class='responsive'></li>
+                            <br>
+                            <div class='userpost'>
+                                <div class='rightguy'>
+                                    <li> {{house.name_of_accomodation}}</li>
+                                    <li><img src="{% static 'account/bed1.png' %}" width='17px' height='17px'>&nbsp{{house.Number_of_rooms}}</li>
+                                </div>
+                                <div class='leftguy'>
+                                    <li><li><img src="{% static 'account/loc2.png' %}" width='20px' height='20px' > &nbsp{{house.location}}</li>
+                                    <li><img src="{% static 'account/naira1.png' %}" width='20px' height='20px' >&nbsp{{house.house_rent}}</li>
+                                </div>
+                                
+                            </div>
+                            <div class='centreguy'>
+                                <a href="{% url 'detail' house.id %}"><button class='button_4' >View more</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div style='font-size: 16px;'>No listing to display</div><br>
+                    <br>
+                    </div>
+                   
+                    </ul>
+                    {% endif %}
+            </div>
+            {% if is_paginated %}
+            <div class="pagination">
+                <span class="page-links">
+                    {% if page_obj.has_previous %}
+                        <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+                    <span class="page-current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+                    {% if page_obj.has_next %}
+                        <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                    {% endif %}
+                </span>
+            </div>
+        {% endif %}
+            
+        </div>
+    </section>
+    <footer class='container-fluid ' id='mfoot'>
+            <div class='container'>
+                <div class='row'>
+                    <div class='col-sm-4'>
+                        <ul>
+                            <li>About Ywala.com</li>
+                            <li>Ywala Blog</li>
+                            <li>Terms and Conditions</li>
+                            <li>Privacy Policy</li>
+                        </ul>
+                    </div>
+    
+                    <div class='col-sm-4'>
+                        <ul>
+                            <li>Finding a room</li>
+                            <li>How it Works</li>
+                            <li>Why use Ywala.com</li>
+                            <li>FAQ</li>
+                            <li>Refund Policy</li>
+                        </ul>
+                    </div>
+    
+                    <div class='col-sm-4'>
+                        <a href='#' class='fa fa-facebook'></a>
+                        <a href='#' class='fa fa-twitter'></a>
+                        <a href='#' class='fa fa-google'></a>
+                        <a href='#' class='fa fa-youtube'></a>
+                    </div>
+    
+                    
+                </div>
+                
+                    <hr style='border-color:#286DA8; border-width: 1px'>
+                    <p>Copyright 2018, Ywala.com</p>
+            </div>
+        </footer>
+            <div id="header"> 
+                {% if messages %}
+                <ul class="messages">    
+                    {% for message in messages %}      
+                    <li class="{{ message.tags }}">        
+                        {{ message|safe }}          
+                        <a href="#" class="close">?</a>      
+                    </li>    
+                    {% endfor %}  
+                </ul>                     
+                {% endif %}       
+            </div> 
+            
+    
+</body> 
+</html>
+
+
+
+
+ 
+
+
+
+

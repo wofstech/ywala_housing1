@@ -1,0 +1,25 @@
+{% for house in myhouses_list  %}
+                    <div class='text-center' id='myinner'>
+                    <li><img src='{{house.image.url}}'width='150px' height="150px" style='border-radius:50%' ></li>
+                    <li><strong>Name of Accomodation:</strong> {{house.name_of_accomodation}}</li>
+                    <li><strong>Type of room:</strong>{{house.type_of_room}}</li>
+                    <li><strong>Location:</strong>{{house.location}}</li>
+                    <li><strong>House Rent:</strong>{{house.house_rent}}</li>
+                    <a href="{% url 'detail' house.id %}"><button class='button_1' id='learnmore'>Learn more</button></a>
+{% endfor %}
+
+{% if is_paginated %}
+            <div class="pagination">
+                <span class="page-links">
+                    {% if page_obj.has_previous %}
+                        <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+                    <span class="page-current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+                    {% if page_obj.has_next %}
+                        <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                    {% endif %}
+                </span>
+            </div>
+        {% endif %}

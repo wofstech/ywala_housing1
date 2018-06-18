@@ -1,0 +1,186 @@
+{% extends "postman/base.html" %}
+{% load static %}
+
+{% load i18n postman_tags %}{% load pagination_tags %}{% comment %}
+WARNING: 'pagination_tags' is a name from the dj-pagination application.
+For convenience, the design of this template is done with the use of that application.
+Django-postman will still be working, even if that application is not installed, by providing a mock
+for the template tag library.
+If the real implementation is to be used, just make sure that 'dj_pagination' is declared before 'postman'
+in the INSTALLED_APPS setting.
+{% endcomment %}
+
+{% block header %}
+<nav class='navbar navbar-inverse' style='padding:0; padding-top:10px;'>
+        <div class='container-fluid'>
+                <div class='navbar-header'>
+                        <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='#MyNavBar'>
+                            <span class='icon-bar'></span>
+                            <span class='icon-bar'></span>
+                            <span class='icon-bar'></span>
+                        </button>
+                        <a  class='navbar-brand' style="font-family: 'Tangerine', serif; font-size: 48px; color:#000000;">Ywala Housing</a>
+                </div>
+                <div 'collapse navbar-collapse'  id='MyNavBar'> 
+                    <ul class='nav navbar-nav navbar-right' style="font-size: 20px;">
+                        <li>
+                            <a href='#'>
+                                {% if user.profile.image  %} 
+                                <img src='{{ user.profile.image.url }}'  width='50px' height="50px" style='border-radius:50%'>
+                                {% else %}
+                                <img src='{% static "account/avatar2.jpg" %}' width='50px' height="50px" style='border-radius:50%'>
+                                {% endif %}
+                        </a>
+                        </li>
+                        <li>
+                            <a href='{% url "dashboard" %}' class='dash' style='font-size: 15px'>
+                                    
+                                {% if request.user.is_authenticated %}      
+                                Hello {{ request.user.first_name }},
+                                {% endif %}
+                            </a>
+                        </li>
+                        <li>
+                            <a href='{% url "addlisting" %}' class='dash' style='font-size: 15px'>
+                                <span class='glyphicon glyphicon-home' aria-hidden="true"></span>
+                                Make a Listing
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href='#' class='dash' style='font-size: 15px'>
+                                <span class='glyphicon glyphicon-envelope' aria-hidden="true"></span>
+                                Inbox
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+</nav>
+
+{% endblock %}
+{% block content %}
+
+<link rel='stylesheet' href='{% static "account/styles.css" %}'>
+<style type=text/css>
+    .pm_btn.pm_btn-delete, .pm_btn.pm_btn-archive, .pm_btn.pm_btn-undelete, .pm_btn.pm_btn-undelete, .pm_btn.pm_btn-read, .pm_btn.pm_btn-unread{
+        background: #286DA8;
+        border:none;
+        margin-right: 0;
+        padding:10px 30px 10px 30px;
+        color:#ffffff;
+        font-size: 20px;
+    }
+
+    #postman{
+        background: #d3d3d3;
+        padding-top: 30px;
+        
+    }
+
+    .topm{
+        padding-left: 50px;
+    }
+
+    td{
+        padding: 20px 20px 20px 20px;
+    }
+
+
+</style>
+<div id="postman">
+<div class='topm'>
+<h1>{% block pm_folder_title %}{% endblock %}</h1>
+{% autopaginate pm_messages %}
+
+{% if invalid_page %}
+<p>{% trans "Sorry, this page number is invalid." %}</p>
+{% else %}
+{% if pm_messages %}
+{% block pm_by_modes %}<div id="pm_byModes">
+<span class="pm_by-mode">{% if by_message %}<a href="{{ by_conversation_url }}">{% endif %}{% trans "by conversation" %}{% if by_message %}</a>{% endif %}</span>
+<span class="pm_by-mode">{% if by_conversation %}<a href="{{ by_message_url }}">{% endif %}{% trans "by message" %}{% if by_conversation %}</a>{% endif %}</span>
+</div>{% endblock pm_by_modes %}
+<form action="{% block pm_form_action %}{% endblock %}" method="post">{% csrf_token %}
+{% block pm_form_buttons %}<span id="pm_buttons">
+{% block pm_delete_button %}<button type="submit" class="pm_btn pm_btn-delete" onclick="this.form.action='{% url 'postman:delete' %}'">{% trans "Delete" %}</button>{% endblock %}
+{% block pm_archive_button %}<button type="submit" class="pm_btn pm_btn-archive" onclick="this.form.action='{% url 'postman:archive' %}'">{% trans "Archive" %}</button>{% endblock %}
+{% block pm_undelete_button %}<button type="submit" class="pm_btn pm_btn-undelete" onclick="this.form.action='{% url 'postman:undelete' %}'">{% trans "Undelete" %}</button>{% endblock %}
+{% block pm_read_button %}<button type="submit" class="pm_btn pm_btn-read" onclick="this.form.action='{% url 'postman:mark-read' %}'">{% trans "Mark as read" %}</button>{% endblock %}
+{% block pm_unread_button %}<button type="submit" class="pm_btn pm_btn-unread" onclick="this.form.action='{% url 'postman:mark-unread' %}'">{% trans "Mark as unread" %}</button>{% endblock %}
+</span>{% endblock %}
+<div class='table-responsive'>
+<table class='table'  >
+ <thead >
+  <tr>
+   <th>{% trans "Action" %}</th>
+{% block pm_sender_header %}   <th><a href="{% postman_order_by sender %}">{% trans "Sender" %}</a></th>{% endblock %}
+{% block pm_recipient_header %}   <th><a href="{% postman_order_by recipient %}">{% trans "Recipient" %}</a></th>{% endblock %}
+   <th><a href="{% postman_order_by subject %}">{% trans "Subject" %}</a></th>
+   <th><a href="{% postman_order_by date %}">{% block pm_date %}{% trans "Date" %}{% endblock %}</a></th>
+  </tr>
+ </thead>
+ <tbody>{% for message in pm_messages %}
+  <tr>
+   <td><input type="checkbox" {% if by_conversation and message.thread_id %}name="tpks" value="{{ message.thread_id }}"{% else %}name="pks" value="{{ message.pk }}"{% endif %} /></td>
+{% block pm_sender_cell %}   <td>{{ message.obfuscated_sender|or_me:user }}{% if message.count %} ({{ message.count }}){% endif %}</td>{% endblock %}
+{% block pm_recipient_cell %}   <td>{{ message.obfuscated_recipient|or_me:user }}{% if message.count %} ({{ message.count }}){% endif %}</td>{% endblock %}
+   <td>{% if message.is_new %}<strong>{% endif %}{% if message.is_replied %}<em>{% endif %}
+{% block pm_subject %}
+    <a href="{% if by_conversation and message.thread_id %}{% url 'postman:view_conversation' message.thread_id %}{% else %}{% url 'postman:view' message.pk %}{% endif %}?next={{ current_url|urlencode }}">
+    {% include "postman/inc_subject_ex.html" %}
+    </a>
+{% endblock %}
+   {% if message.is_replied %}</em>{% endif %}{% if message.is_new %}</strong>{% endif %}</td>
+   <td>{{ message.sent_at|compact_date:_("g:i A,M j,n/j/y") }}</td>
+  </tr>{% endfor %}
+ </tbody>
+</table>
+</div>
+</form>
+<div class='text-center' style='font-size: 17px;'>
+    {% paginate %}
+</div>
+{% else %}
+<p>{% trans "No messages." %}</p>
+{% endif %}
+{% endif %}
+</div>
+{% block pm_footer_info %}<footer class='container-fluid ' id='mfoot'>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-sm-4'>
+                <ul>
+                    <li>About Ywala.com</li>
+                    <li>Ywala Blog</li>
+                    <li>Terms and Conditions</li>
+                    <li>Privacy Policy</li>
+                </ul>
+            </div>
+
+            <div class='col-sm-4'>
+                <ul>
+                    <li>Finding a room</li>
+                    <li>How it Works</li>
+                    <li>Why use Ywala.com</li>
+                    <li>FAQ</li>
+                    <li>Refund Policy</li>
+                </ul>
+            </div>
+
+            <div class='col-sm-4'>
+                <a href='#' class='fa fa-facebook'></a>
+                <a href='#' class='fa fa-twitter'></a>
+                <a href='#' class='fa fa-google'></a>
+                <a href='#' class='fa fa-youtube'></a>
+            </div>
+
+            
+        </div>
+        
+            <hr style='border-color:#286DA8; border-width: 1px'>
+            <p>Copyright 2018, Ywala.com</p>
+    </div>
+</footer>{% endblock %}
+</div>
+{% endblock content %}

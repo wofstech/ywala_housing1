@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block content %}  
+{% load static %}
+<link rel='stylesheet' href='{% static "account/styles.css" %}'>
+<section id='showcase'>
+<div class='container'>
+   <h2>Ywala Housing Helps You Find a Room or Apartment in a Minute</h2><br>
+   <form method='get' action='{% url "searchme" %}'>
+        <input type='text' name='q' placeholder="Enter Search Keyword" value='{{ request.get.q }}' id='intry' style="color:#000000">
+        <input type='submit' value='Search' class='button_1' id='sub1'>
+    </form>
+</div>
+
+
+</section>
+
+<div class='container' style="text-align:center" id='howworks1'>
+    <div class='howworks'>
+        <h2 >How it Works</h2>
+        <div class='row'>
+                <div class='col-sm-4'>
+                    <span class='glyphicon glyphicon-search' aria-hidden="true" style="color: #286da8"></span>
+                    <p>Search for a room or an apartment in any city of your choice</p>
+                </div>
+
+                <div class='col-sm-4'>
+                    <span class='glyphicon glyphicon-ok' aria-hidden="true" style="color: #286da8"></span>
+                    <p>Register a Free Account to Contact the Owner</p>
+                </div>
+
+                <div class='col-sm-4'>
+                    <span class='glyphicon glyphicon-eye-open' aria-hidden="true" style="color: #286da8"></span>
+                    <p>Arrange a Viewing with the Owner to Inspect the room</p>
+                </div>
+            </div>
+            <hr style='border-color:#494e6b; border-width: 1px'>
+    </div>
+</div>
+
+<div class='container' style="text-align:center" id='whyus'>
+        <div class='whyus1'>
+            <h2 >Why use Ywala Housing</h2>
+            <div class='row' id ='frow'>
+                    <div class='col-sm-4'>
+                        <span class='glyphicon glyphicon-phone' aria-hidden="true" style="color: #286da8"></span>
+                        <h3>Ywala</h3>
+                        <p>Simple and easy to use, If you can use a smartPhone, you can use Ywala.com</p>
+                    </div>
+    
+                    <div class='col-sm-4'>
+                        <span class='glyphicon glyphicon-flash' aria-hidden="true" style="color: #286da8"></span>
+                        <h3>Fast</h3>
+                        <p>We promote your adverts and help you reach hundreds of people to land a tenant fast</p>
+                    </div>
+    
+                    <div class='col-sm-4'>
+                        <span class='glyphicon glyphicon-bell' aria-hidden="true" style="color: #286da8"></span>
+                        <h3>Early Prompts</h3>
+                        <p>Be the first to know when there is a new room or apartment available in the area/city you want</p>
+                    </div>
+                </div>
+
+                <div class='row'>
+                        <div class='col-sm-4'>
+                            <span class='glyphicon glyphicon-lock' aria-hidden="true" style="color: #286da8"></span>
+                            <h3>safe</h3>
+                            <p>Safety is guaranteed, your safety is important to us and so we have developed systemwith maximum security while ensuring simplicity of use</p>
+                        </div>
+        
+                        <div class='col-sm-4'>
+                            <span class='glyphicon glyphicon-usd' aria-hidden="true" style="color: #286da8"></span>
+                            <h3>Free</h3>
+                            <p>finding a suitable room on Ywala.com is completely free </p>
+                        </div>
+        
+                        <div class='col-sm-4'>
+                            <span class='glyphicon glyphicon-thumbs-up' aria-hidden="true" style="color: #286da8"></span>
+                            <h3>Flexible and Secure</h3>
+                            <p>Use our secured system to pay your rent. if you dont like the room afterwords, your refund is gurannted. you can also pay directly to the Landlord</p>
+                        </div>
+                    </div>
+                
+        </div>
+    </div>
+
+    <footer class='container-fluid ' id='mfoot'>
+        <div class='container'>
+            <div class='row'>
+                <div class='col-sm-4'>
+                    <ul>
+                        <li>About Ywala.com</li>
+                        <li>Ywala Blog</li>
+                        <li>Terms and Conditions</li>
+                        <li>Privacy Policy</li>
+                    </ul>
+                </div>
+
+                <div class='col-sm-4'>
+                    <ul>
+                        <li>Finding a room</li>
+                        <li>How it Works</li>
+                        <li>Why use Ywala.com</li>
+                        <li>FAQ</li>
+                        <li>Refund Policy</li>
+                    </ul>
+                </div>
+
+                <div class='col-sm-4'>
+                    <a href='#' class='fa fa-facebook'></a>
+                    <a href='#' class='fa fa-twitter'></a>
+                    <a href='#' class='fa fa-google'></a>
+                    <a href='#' class='fa fa-youtube'></a>
+                </div>
+
+                
+            </div>
+            
+                <hr style='border-color:#286DA8; border-width: 1px'>
+                <p>Copyright 2018, Ywala.com</p>
+        </div>
+    </footer>
+    
+{% endblock %}
